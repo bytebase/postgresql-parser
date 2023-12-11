@@ -641,7 +641,11 @@ copy_generic_opt_arg_list_item
    ;
 
 createstmt
-   : CREATE opttemp TABLE (IF_P NOT EXISTS)? qualified_name (OPEN_PAREN opttableelementlist CLOSE_PAREN optinherit optpartitionspec table_access_method_clause optwith oncommitoption opttablespace | OF any_name opttypedtableelementlist optpartitionspec table_access_method_clause optwith oncommitoption opttablespace | PARTITION OF qualified_name opttypedtableelementlist partitionboundspec optpartitionspec table_access_method_clause optwith oncommitoption opttablespace)
+   : CREATE opttemp TABLE (IF_P NOT EXISTS)? qualified_name (
+      OPEN_PAREN opttableelementlist CLOSE_PAREN optinherit optpartitionspec table_access_method_clause optwith oncommitoption opttablespace
+      | OF any_name opttypedtableelementlist optpartitionspec table_access_method_clause optwith oncommitoption opttablespace
+      | PARTITION OF qualified_name opttypedtableelementlist partitionboundspec optpartitionspec table_access_method_clause optwith oncommitoption opttablespace
+      )
    ;
 
 opttemp
@@ -1988,6 +1992,7 @@ common_func_opt_item
 
 createfunc_opt_item
    : AS func_as
+   | BEGIN_P ATOMIC_P stmtmulti END_P
    | LANGUAGE nonreservedword_or_sconst
    | TRANSFORM transform_type_list
    | WINDOW
@@ -4189,6 +4194,7 @@ unreserved_keyword
    | ASSERTION
    | ASSIGNMENT
    | AT
+   | ATOMIC_P
    | ATTACH
    | ATTRIBUTE
    | BACKWARD
