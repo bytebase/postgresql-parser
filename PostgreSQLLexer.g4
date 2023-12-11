@@ -1654,6 +1654,10 @@ ZONE
    // non-reserved keywords (can not be function or type)
 
    //
+   
+ATOMIC_P
+   : 'ATOMIC'
+   ;
 
 BETWEEN
    : 'BETWEEN'

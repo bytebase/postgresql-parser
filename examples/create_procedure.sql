@@ -1,6 +1,13 @@
 CALL nonexistent();  -- error
 CALL random();  -- error
 
+CREATE PROCEDURE insert_data(a integer, b integer)
+LANGUAGE SQL
+BEGIN ATOMIC
+  INSERT INTO tbl VALUES (a);
+  INSERT INTO tbl VALUES (b);
+END;
+
 CREATE FUNCTION cp_testfunc1(a int) RETURNS int LANGUAGE SQL AS $$ SELECT a $$;
 
 CREATE TABLE cp_test (a int, b text);
