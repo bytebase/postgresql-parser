@@ -2691,6 +2691,10 @@ func (v *BasePostgreSQLParserVisitor) VisitTarget_star(ctx *Target_starContext) 
 	return v.VisitChildren(ctx)
 }
 
+func (v *BasePostgreSQLParserVisitor) VisitTarget_alias(ctx *Target_aliasContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BasePostgreSQLParserVisitor) VisitQualified_name_list(ctx *Qualified_name_listContext) interface{} {
 	return v.VisitChildren(ctx)
 }

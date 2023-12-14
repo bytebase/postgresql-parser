@@ -2020,6 +2020,9 @@ type PostgreSQLParserVisitor interface {
 	// Visit a parse tree produced by PostgreSQLParser#target_star.
 	VisitTarget_star(ctx *Target_starContext) interface{}
 
+	// Visit a parse tree produced by PostgreSQLParser#target_alias.
+	VisitTarget_alias(ctx *Target_aliasContext) interface{}
+
 	// Visit a parse tree produced by PostgreSQLParser#qualified_name_list.
 	VisitQualified_name_list(ctx *Qualified_name_listContext) interface{}
 

@@ -4227,6 +4227,12 @@ func (s *BasePostgreSQLParserListener) EnterTarget_star(ctx *Target_starContext)
 // ExitTarget_star is called when production target_star is exited.
 func (s *BasePostgreSQLParserListener) ExitTarget_star(ctx *Target_starContext) {}
 
+// EnterTarget_alias is called when production target_alias is entered.
+func (s *BasePostgreSQLParserListener) EnterTarget_alias(ctx *Target_aliasContext) {}
+
+// ExitTarget_alias is called when production target_alias is exited.
+func (s *BasePostgreSQLParserListener) ExitTarget_alias(ctx *Target_aliasContext) {}
+
 // EnterQualified_name_list is called when production qualified_name_list is entered.
 func (s *BasePostgreSQLParserListener) EnterQualified_name_list(ctx *Qualified_name_listContext) {}
 
