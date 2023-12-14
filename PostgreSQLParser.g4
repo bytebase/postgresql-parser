@@ -4024,8 +4024,13 @@ target_list
    ;
 
 target_el
-   : a_expr (AS collabel | identifier |) # target_label
+   : a_expr target_alias? # target_label
    | STAR # target_star
+   ;
+   
+target_alias
+   : AS collabel
+   | identifier
    ;
 
 qualified_name_list

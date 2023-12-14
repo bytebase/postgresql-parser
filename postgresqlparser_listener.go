@@ -2020,6 +2020,9 @@ type PostgreSQLParserListener interface {
 	// EnterTarget_star is called when entering the target_star production.
 	EnterTarget_star(c *Target_starContext)
 
+	// EnterTarget_alias is called when entering the target_alias production.
+	EnterTarget_alias(c *Target_aliasContext)
+
 	// EnterQualified_name_list is called when entering the qualified_name_list production.
 	EnterQualified_name_list(c *Qualified_name_listContext)
 
@@ -4467,6 +4470,9 @@ type PostgreSQLParserListener interface {
 
 	// ExitTarget_star is called when exiting the target_star production.
 	ExitTarget_star(c *Target_starContext)
+
+	// ExitTarget_alias is called when exiting the target_alias production.
+	ExitTarget_alias(c *Target_aliasContext)
 
 	// ExitQualified_name_list is called when exiting the qualified_name_list production.
 	ExitQualified_name_list(c *Qualified_name_listContext)
