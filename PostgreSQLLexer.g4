@@ -2893,7 +2893,7 @@ PLSQLIDENTIFIER
    //
 
 Whitespace
-   : [ \t]+ -> channel (HIDDEN)
+   : [ \t] -> channel (HIDDEN)
    ;
 
 Newline
