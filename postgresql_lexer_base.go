@@ -383,7 +383,7 @@ func (receiver *PostgreSQLLexerBase) IsIdentifier(tokenType int) bool {
 		PostgreSQLLexerYES_P,
 		PostgreSQLLexerZONE:
 		return true
-	case PostgreSQLLexerALIAS, // plsql unresolved keywords
+	case PostgreSQLLexerALIAS, // plsql unreserved keywords
 		PostgreSQLLexerAND,
 		PostgreSQLLexerARRAY,
 		PostgreSQLLexerASSERT,
@@ -420,6 +420,7 @@ func (receiver *PostgreSQLLexerBase) IsIdentifier(tokenType int) bool {
 		PostgreSQLLexerVARIABLE_CONFLICT,
 		PostgreSQLLexerWARNING,
 		PostgreSQLLexerOUTER_P:
+		return true
 	}
 
 	return false
