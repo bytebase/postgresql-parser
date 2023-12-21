@@ -2123,11 +2123,11 @@ func (v *BasePostgreSQLParserVisitor) VisitFrom_list(ctx *From_listContext) inte
 	return v.VisitChildren(ctx)
 }
 
-func (v *BasePostgreSQLParserVisitor) VisitNon_ansi_join(ctx *Non_ansi_joinContext) interface{} {
+func (v *BasePostgreSQLParserVisitor) VisitTable_ref(ctx *Table_refContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BasePostgreSQLParserVisitor) VisitTable_ref(ctx *Table_refContext) interface{} {
+func (v *BasePostgreSQLParserVisitor) VisitJoined_table(ctx *Joined_tableContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
