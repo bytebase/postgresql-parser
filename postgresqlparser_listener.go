@@ -1594,11 +1594,11 @@ type PostgreSQLParserListener interface {
 	// EnterFrom_list is called when entering the from_list production.
 	EnterFrom_list(c *From_listContext)
 
-	// EnterNon_ansi_join is called when entering the non_ansi_join production.
-	EnterNon_ansi_join(c *Non_ansi_joinContext)
-
 	// EnterTable_ref is called when entering the table_ref production.
 	EnterTable_ref(c *Table_refContext)
+
+	// EnterJoined_table is called when entering the joined_table production.
+	EnterJoined_table(c *Joined_tableContext)
 
 	// EnterAlias_clause is called when entering the alias_clause production.
 	EnterAlias_clause(c *Alias_clauseContext)
@@ -4045,11 +4045,11 @@ type PostgreSQLParserListener interface {
 	// ExitFrom_list is called when exiting the from_list production.
 	ExitFrom_list(c *From_listContext)
 
-	// ExitNon_ansi_join is called when exiting the non_ansi_join production.
-	ExitNon_ansi_join(c *Non_ansi_joinContext)
-
 	// ExitTable_ref is called when exiting the table_ref production.
 	ExitTable_ref(c *Table_refContext)
+
+	// ExitJoined_table is called when exiting the joined_table production.
+	ExitJoined_table(c *Joined_tableContext)
 
 	// ExitAlias_clause is called when exiting the alias_clause production.
 	ExitAlias_clause(c *Alias_clauseContext)

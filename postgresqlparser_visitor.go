@@ -1594,11 +1594,11 @@ type PostgreSQLParserVisitor interface {
 	// Visit a parse tree produced by PostgreSQLParser#from_list.
 	VisitFrom_list(ctx *From_listContext) interface{}
 
-	// Visit a parse tree produced by PostgreSQLParser#non_ansi_join.
-	VisitNon_ansi_join(ctx *Non_ansi_joinContext) interface{}
-
 	// Visit a parse tree produced by PostgreSQLParser#table_ref.
 	VisitTable_ref(ctx *Table_refContext) interface{}
+
+	// Visit a parse tree produced by PostgreSQLParser#joined_table.
+	VisitJoined_table(ctx *Joined_tableContext) interface{}
 
 	// Visit a parse tree produced by PostgreSQLParser#alias_clause.
 	VisitAlias_clause(ctx *Alias_clauseContext) interface{}

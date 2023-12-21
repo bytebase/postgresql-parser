@@ -3006,12 +3006,7 @@ from_clause
    ;
 
 from_list
-   : non_ansi_join
-   | table_ref (COMMA table_ref)*
-   ;
-
-non_ansi_join
-   : table_ref (COMMA table_ref)+
+   : table_ref (COMMA table_ref)*
    ;
 
 table_ref
@@ -3030,7 +3025,13 @@ table_ref
                                 | join_type? JOIN table_ref join_qual
                              )? CLOSE_PAREN opt_alias_clause?
      )
-        (CROSS JOIN table_ref | NATURAL join_type? JOIN table_ref | join_type? JOIN table_ref join_qual)*
+      joined_table*
+   ;
+   
+joined_table
+   : join_type? JOIN table_ref join_qual
+   | CROSS JOIN table_ref
+   | NATURAL join_type? JOIN table_ref
    ;
 
 alias_clause

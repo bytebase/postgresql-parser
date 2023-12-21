@@ -3353,17 +3353,17 @@ func (s *BasePostgreSQLParserListener) EnterFrom_list(ctx *From_listContext) {}
 // ExitFrom_list is called when production from_list is exited.
 func (s *BasePostgreSQLParserListener) ExitFrom_list(ctx *From_listContext) {}
 
-// EnterNon_ansi_join is called when production non_ansi_join is entered.
-func (s *BasePostgreSQLParserListener) EnterNon_ansi_join(ctx *Non_ansi_joinContext) {}
-
-// ExitNon_ansi_join is called when production non_ansi_join is exited.
-func (s *BasePostgreSQLParserListener) ExitNon_ansi_join(ctx *Non_ansi_joinContext) {}
-
 // EnterTable_ref is called when production table_ref is entered.
 func (s *BasePostgreSQLParserListener) EnterTable_ref(ctx *Table_refContext) {}
 
 // ExitTable_ref is called when production table_ref is exited.
 func (s *BasePostgreSQLParserListener) ExitTable_ref(ctx *Table_refContext) {}
+
+// EnterJoined_table is called when production joined_table is entered.
+func (s *BasePostgreSQLParserListener) EnterJoined_table(ctx *Joined_tableContext) {}
+
+// ExitJoined_table is called when production joined_table is exited.
+func (s *BasePostgreSQLParserListener) ExitJoined_table(ctx *Joined_tableContext) {}
 
 // EnterAlias_clause is called when production alias_clause is entered.
 func (s *BasePostgreSQLParserListener) EnterAlias_clause(ctx *Alias_clauseContext) {}
