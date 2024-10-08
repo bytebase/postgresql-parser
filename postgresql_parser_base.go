@@ -83,7 +83,7 @@ func (receiver *PostgreSQLParserBase) ParseRoutineBody(localContextInterface ICr
 	var funcAs *Createfunc_opt_itemContext
 	for _, coi := range localContext.AllCreatefunc_opt_item() {
 		ctx, ok := coi.(*Createfunc_opt_itemContext)
-		if !ok || ctx.LANGUAGE() == nil {
+		if !ok || ctx.AS() == nil {
 			continue
 		}
 		as := ctx.Func_as()
