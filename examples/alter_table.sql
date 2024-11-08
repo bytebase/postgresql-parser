@@ -249,7 +249,7 @@ alter table stud_emp rename to pg_toast_stud_emp;
 alter table pg_toast_stud_emp rename to stud_emp;
 
 -- renaming index should rename constraint as well
-ALTER TABLE onek ADD CONSTRAINT onek_unique1_constraint UNIQUE (unique1);
+ALTER TABLE onek ADD CONSTRAINT onek_unique1_constraint UNIQUE NULLS NOT DISTINCT (unique1);
 ALTER INDEX onek_unique1_constraint RENAME TO onek_unique1_constraint_foo;
 ALTER TABLE onek DROP CONSTRAINT onek_unique1_constraint_foo;
 
@@ -259,7 +259,7 @@ ALTER TABLE onek RENAME CONSTRAINT onek_check_constraint TO onek_check_constrain
 ALTER TABLE onek DROP CONSTRAINT onek_check_constraint_foo;
 
 -- renaming constraint should rename index as well
-ALTER TABLE onek ADD CONSTRAINT onek_unique1_constraint UNIQUE (unique1);
+ALTER TABLE onek ADD CONSTRAINT onek_unique1_constraint UNIQUE NULLS DISTINCT (unique1);
 DROP INDEX onek_unique1_constraint;  -- to see whether it's there
 ALTER TABLE onek RENAME CONSTRAINT onek_unique1_constraint TO onek_unique1_constraint_foo;
 DROP INDEX onek_unique1_constraint_foo;  -- to see whether it's there

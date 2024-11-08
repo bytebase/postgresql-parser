@@ -1,4 +1,4 @@
-// Code generated from PostgreSQLParser.g4 by ANTLR 4.13.0. DO NOT EDIT.
+// Code generated from PostgreSQLParser.g4 by ANTLR 4.13.1. DO NOT EDIT.
 
 package parser // PostgreSQLParser
 import "github.com/antlr4-go/antlr/v4"
@@ -303,6 +303,9 @@ type PostgreSQLParserListener interface {
 
 	// EnterColconstraintelem is called when entering the colconstraintelem production.
 	EnterColconstraintelem(c *ColconstraintelemContext)
+
+	// EnterOpt_unique_null_treatment is called when entering the opt_unique_null_treatment production.
+	EnterOpt_unique_null_treatment(c *Opt_unique_null_treatmentContext)
 
 	// EnterGenerated_when is called when entering the generated_when production.
 	EnterGenerated_when(c *Generated_whenContext)
@@ -853,6 +856,12 @@ type PostgreSQLParserListener interface {
 	// EnterPrivilege_target is called when entering the privilege_target production.
 	EnterPrivilege_target(c *Privilege_targetContext)
 
+	// EnterParameter_name_list is called when entering the parameter_name_list production.
+	EnterParameter_name_list(c *Parameter_name_listContext)
+
+	// EnterParameter_name is called when entering the parameter_name production.
+	EnterParameter_name(c *Parameter_nameContext)
+
 	// EnterGrantee_list is called when entering the grantee_list production.
 	EnterGrantee_list(c *Grantee_listContext)
 
@@ -1129,11 +1138,14 @@ type PostgreSQLParserListener interface {
 	// EnterCreatepublicationstmt is called when entering the createpublicationstmt production.
 	EnterCreatepublicationstmt(c *CreatepublicationstmtContext)
 
-	// EnterOpt_publication_for_tables is called when entering the opt_publication_for_tables production.
-	EnterOpt_publication_for_tables(c *Opt_publication_for_tablesContext)
+	// EnterPub_obj_list is called when entering the pub_obj_list production.
+	EnterPub_obj_list(c *Pub_obj_listContext)
 
-	// EnterPublication_for_tables is called when entering the publication_for_tables production.
-	EnterPublication_for_tables(c *Publication_for_tablesContext)
+	// EnterPublication_obj_spec is called when entering the publication_obj_spec production.
+	EnterPublication_obj_spec(c *Publication_obj_specContext)
+
+	// EnterOpt_where_clause is called when entering the opt_where_clause production.
+	EnterOpt_where_clause(c *Opt_where_clauseContext)
 
 	// EnterAlterpublicationstmt is called when entering the alterpublicationstmt production.
 	EnterAlterpublicationstmt(c *AlterpublicationstmtContext)
@@ -2755,6 +2767,9 @@ type PostgreSQLParserListener interface {
 	// ExitColconstraintelem is called when exiting the colconstraintelem production.
 	ExitColconstraintelem(c *ColconstraintelemContext)
 
+	// ExitOpt_unique_null_treatment is called when exiting the opt_unique_null_treatment production.
+	ExitOpt_unique_null_treatment(c *Opt_unique_null_treatmentContext)
+
 	// ExitGenerated_when is called when exiting the generated_when production.
 	ExitGenerated_when(c *Generated_whenContext)
 
@@ -3304,6 +3319,12 @@ type PostgreSQLParserListener interface {
 	// ExitPrivilege_target is called when exiting the privilege_target production.
 	ExitPrivilege_target(c *Privilege_targetContext)
 
+	// ExitParameter_name_list is called when exiting the parameter_name_list production.
+	ExitParameter_name_list(c *Parameter_name_listContext)
+
+	// ExitParameter_name is called when exiting the parameter_name production.
+	ExitParameter_name(c *Parameter_nameContext)
+
 	// ExitGrantee_list is called when exiting the grantee_list production.
 	ExitGrantee_list(c *Grantee_listContext)
 
@@ -3580,11 +3601,14 @@ type PostgreSQLParserListener interface {
 	// ExitCreatepublicationstmt is called when exiting the createpublicationstmt production.
 	ExitCreatepublicationstmt(c *CreatepublicationstmtContext)
 
-	// ExitOpt_publication_for_tables is called when exiting the opt_publication_for_tables production.
-	ExitOpt_publication_for_tables(c *Opt_publication_for_tablesContext)
+	// ExitPub_obj_list is called when exiting the pub_obj_list production.
+	ExitPub_obj_list(c *Pub_obj_listContext)
 
-	// ExitPublication_for_tables is called when exiting the publication_for_tables production.
-	ExitPublication_for_tables(c *Publication_for_tablesContext)
+	// ExitPublication_obj_spec is called when exiting the publication_obj_spec production.
+	ExitPublication_obj_spec(c *Publication_obj_specContext)
+
+	// ExitOpt_where_clause is called when exiting the opt_where_clause production.
+	ExitOpt_where_clause(c *Opt_where_clauseContext)
 
 	// ExitAlterpublicationstmt is called when exiting the alterpublicationstmt production.
 	ExitAlterpublicationstmt(c *AlterpublicationstmtContext)

@@ -453,6 +453,7 @@ alter_table_cmd
    | OF any_name
    | NOT OF
    | OWNER TO rolespec
+   | SET ACCESS METHOD name
    | SET TABLESPACE name
    | SET reloptions
    | RESET reloptions
@@ -692,12 +693,16 @@ colconstraint
 colconstraintelem
    : NOT NULL_P
    | NULL_P
-   | UNIQUE opt_definition? optconstablespace?
+   | UNIQUE opt_unique_null_treatment? opt_definition? optconstablespace?
    | PRIMARY KEY opt_definition? optconstablespace?
    | CHECK OPEN_PAREN a_expr CLOSE_PAREN opt_no_inherit?
    | DEFAULT b_expr
    | GENERATED generated_when AS (IDENTITY_P optparenthesizedseqoptlist? | OPEN_PAREN a_expr CLOSE_PAREN STORED)
    | REFERENCES qualified_name opt_column_list? key_match? key_actions?
+   ;
+   
+opt_unique_null_treatment
+   : NULLS_P NOT? DISTINCT
    ;
 
 generated_when
@@ -738,7 +743,7 @@ tableconstraint
 
 constraintelem
    : CHECK OPEN_PAREN a_expr CLOSE_PAREN constraintattributespec
-   | UNIQUE (OPEN_PAREN columnlist CLOSE_PAREN opt_c_include? opt_definition? optconstablespace? constraintattributespec | existingindex constraintattributespec)
+   | UNIQUE opt_unique_null_treatment? (OPEN_PAREN columnlist CLOSE_PAREN opt_c_include? opt_definition? optconstablespace? constraintattributespec | existingindex constraintattributespec)
    | PRIMARY KEY (OPEN_PAREN columnlist CLOSE_PAREN opt_c_include? opt_definition? optconstablespace? constraintattributespec | existingindex constraintattributespec)
    | EXCLUDE access_method_clause? OPEN_PAREN exclusionconstraintlist CLOSE_PAREN opt_c_include? opt_definition? optconstablespace? exclusionwhereclause? constraintattributespec
    | FOREIGN KEY OPEN_PAREN columnlist CLOSE_PAREN REFERENCES qualified_name opt_column_list? key_match? key_actions? constraintattributespec
@@ -799,7 +804,7 @@ key_action
    : NO ACTION
    | RESTRICT
    | CASCADE
-   | SET (NULL_P | DEFAULT)
+   | SET (NULL_P | DEFAULT) opt_column_list?
    ;
 
 optinherit
@@ -910,6 +915,7 @@ seqoptelem
    | CACHE numericonly
    | CYCLE
    | INCREMENT opt_by? numericonly
+   | LOGGED
    | MAXVALUE numericonly
    | MINVALUE numericonly
    | NO (MAXVALUE | MINVALUE | CYCLE)
@@ -917,6 +923,7 @@ seqoptelem
    | SEQUENCE NAME_P any_name
    | START opt_with? numericonly
    | RESTART opt_with? numericonly?
+   | UNLOGGED
    ;
 
 opt_by
@@ -1644,6 +1651,7 @@ privilege
    : SELECT opt_column_list?
    | REFERENCES opt_column_list?
    | CREATE opt_column_list?
+   | ALTER SYSTEM_P
    | colid opt_column_list?
    ;
 
@@ -1660,6 +1668,7 @@ privilege_target
    | DOMAIN_P any_name_list
    | LANGUAGE name_list
    | LARGE_P OBJECT_P numericonly_list
+   | PARAMETER parameter_name_list
    | SCHEMA name_list
    | TABLESPACE name_list
    | TYPE_P any_name_list
@@ -1668,6 +1677,14 @@ privilege_target
    | ALL FUNCTIONS IN_P SCHEMA name_list
    | ALL PROCEDURES IN_P SCHEMA name_list
    | ALL ROUTINES IN_P SCHEMA name_list
+   ;
+   
+parameter_name_list
+   : parameter_name (COMMA parameter_name)*
+   ;
+   
+parameter_name
+   : colid (DOT colid)?
    ;
 
 grantee_list
@@ -1731,8 +1748,8 @@ defacl_privilege_target
    //create index
 
 indexstmt
-   : CREATE opt_unique? INDEX opt_concurrently? opt_index_name? ON relation_expr access_method_clause? OPEN_PAREN index_params CLOSE_PAREN opt_include? opt_reloptions? opttablespace? where_clause?
-   | CREATE opt_unique? INDEX opt_concurrently? IF_P NOT EXISTS name ON relation_expr access_method_clause? OPEN_PAREN index_params CLOSE_PAREN opt_include? opt_reloptions? opttablespace? where_clause?
+   : CREATE opt_unique? INDEX opt_concurrently? opt_index_name? ON relation_expr access_method_clause? OPEN_PAREN index_params CLOSE_PAREN opt_include? opt_unique_null_treatment? opt_reloptions? opttablespace? where_clause?
+   | CREATE opt_unique? INDEX opt_concurrently? IF_P NOT EXISTS name ON relation_expr access_method_clause? OPEN_PAREN index_params CLOSE_PAREN opt_include? opt_unique_null_treatment? opt_reloptions? opttablespace? where_clause?
    ;
 
 opt_unique
@@ -2246,23 +2263,33 @@ alterownerstmt
    ;
 
 createpublicationstmt
-   : CREATE PUBLICATION name opt_publication_for_tables? opt_definition?
+   : CREATE PUBLICATION name opt_definition?
+   | CREATE PUBLICATION name FOR ALL TABLES opt_definition?
+   | CREATE PUBLICATION name FOR pub_obj_list opt_definition?
+   ;
+   
+pub_obj_list
+   : publication_obj_spec (COMMA publication_obj_spec)*
+   ;
+   
+publication_obj_spec
+   : TABLE relation_expr opt_column_list? opt_where_clause?
+   | TABLE IN_P SCHEMA (colid | CURRENT_SCHEMA)
+   | colid opt_column_list? opt_where_clause?
+   | colid indirection opt_column_list? opt_where_clause?
+   | relation_expr opt_column_list? opt_where_clause?
+   | CURRENT_SCHEMA
    ;
 
-opt_publication_for_tables
-   : publication_for_tables
-   ;
-
-publication_for_tables
-   : FOR TABLE relation_expr_list
-   | FOR ALL TABLES
+opt_where_clause
+   : WHERE OPEN_PAREN a_expr CLOSE_PAREN
    ;
 
 alterpublicationstmt
    : ALTER PUBLICATION name SET definition
-   | ALTER PUBLICATION name ADD_P TABLE relation_expr_list
-   | ALTER PUBLICATION name SET TABLE relation_expr_list
-   | ALTER PUBLICATION name DROP TABLE relation_expr_list
+   | ALTER PUBLICATION name ADD_P pub_obj_list
+   | ALTER PUBLICATION name SET pub_obj_list
+   | ALTER PUBLICATION name DROP pub_obj_list
    ;
 
 createsubscriptionstmt
@@ -2284,6 +2311,7 @@ altersubscriptionstmt
    | ALTER SUBSCRIPTION name SET PUBLICATION publication_name_list opt_definition?
    | ALTER SUBSCRIPTION name ENABLE_P
    | ALTER SUBSCRIPTION name DISABLE_P
+   | ALTER SUBSCRIPTION name SKIP_P definition
    ;
 
 dropsubscriptionstmt
@@ -2436,7 +2464,7 @@ opt_equal
    ;
 
 alterdatabasestmt
-   : ALTER DATABASE name (WITH createdb_opt_list? | createdb_opt_list? | SET TABLESPACE name)
+   : ALTER DATABASE name (WITH createdb_opt_list? | createdb_opt_list? | SET TABLESPACE name | REFRESH COLLATION VERSION_P)
    ;
 
 alterdatabasesetstmt
@@ -2625,6 +2653,7 @@ preparablestmt
    | insertstmt
    | updatestmt
    | deletestmt
+   | mergestmt
    ;
 
 executestmt
@@ -2687,7 +2716,7 @@ returning_clause
 
 // https://www.postgresql.org/docs/current/sql-merge.html
 mergestmt
-   : MERGE INTO? qualified_name alias_clause? USING (select_with_parens|qualified_name) alias_clause? ON a_expr
+   : with_clause? MERGE INTO ONLY? qualified_name alias_clause? USING (select_with_parens|qualified_name) alias_clause? ON a_expr
         (merge_insert_clause merge_update_clause? | merge_update_clause merge_insert_clause?) merge_delete_clause?
    ;
 
@@ -4203,6 +4232,7 @@ unreserved_keyword
    | OWNED
    | OWNER
    | PARALLEL
+   | PARAMETER
    | PARSER
    | PARTIAL
    | PARTITION

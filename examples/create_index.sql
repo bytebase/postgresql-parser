@@ -382,7 +382,7 @@ RESET maintenance_work_mem;
 -- Test functional index
 --
 CREATE TABLE func_index_heap (f1 text, f2 text);
-CREATE UNIQUE INDEX func_index_index on func_index_heap (textcat(f1,f2));
+CREATE UNIQUE INDEX func_index_index on func_index_heap (textcat(f1,f2)) NULLS NOT DISTINCT;
 
 INSERT INTO func_index_heap VALUES('ABC','DEF');
 INSERT INTO func_index_heap VALUES('AB','CDEFG');
