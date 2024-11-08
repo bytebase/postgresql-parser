@@ -1,4 +1,4 @@
-// Code generated from PostgreSQLParser.g4 by ANTLR 4.13.0. DO NOT EDIT.
+// Code generated from PostgreSQLParser.g4 by ANTLR 4.13.1. DO NOT EDIT.
 
 package parser // PostgreSQLParser
 import "github.com/antlr4-go/antlr/v4"
@@ -633,6 +633,14 @@ func (s *BasePostgreSQLParserListener) EnterColconstraintelem(ctx *Colconstraint
 
 // ExitColconstraintelem is called when production colconstraintelem is exited.
 func (s *BasePostgreSQLParserListener) ExitColconstraintelem(ctx *ColconstraintelemContext) {}
+
+// EnterOpt_unique_null_treatment is called when production opt_unique_null_treatment is entered.
+func (s *BasePostgreSQLParserListener) EnterOpt_unique_null_treatment(ctx *Opt_unique_null_treatmentContext) {
+}
+
+// ExitOpt_unique_null_treatment is called when production opt_unique_null_treatment is exited.
+func (s *BasePostgreSQLParserListener) ExitOpt_unique_null_treatment(ctx *Opt_unique_null_treatmentContext) {
+}
 
 // EnterGenerated_when is called when production generated_when is entered.
 func (s *BasePostgreSQLParserListener) EnterGenerated_when(ctx *Generated_whenContext) {}
@@ -1797,6 +1805,18 @@ func (s *BasePostgreSQLParserListener) EnterPrivilege_target(ctx *Privilege_targ
 // ExitPrivilege_target is called when production privilege_target is exited.
 func (s *BasePostgreSQLParserListener) ExitPrivilege_target(ctx *Privilege_targetContext) {}
 
+// EnterParameter_name_list is called when production parameter_name_list is entered.
+func (s *BasePostgreSQLParserListener) EnterParameter_name_list(ctx *Parameter_name_listContext) {}
+
+// ExitParameter_name_list is called when production parameter_name_list is exited.
+func (s *BasePostgreSQLParserListener) ExitParameter_name_list(ctx *Parameter_name_listContext) {}
+
+// EnterParameter_name is called when production parameter_name is entered.
+func (s *BasePostgreSQLParserListener) EnterParameter_name(ctx *Parameter_nameContext) {}
+
+// ExitParameter_name is called when production parameter_name is exited.
+func (s *BasePostgreSQLParserListener) ExitParameter_name(ctx *Parameter_nameContext) {}
+
 // EnterGrantee_list is called when production grantee_list is entered.
 func (s *BasePostgreSQLParserListener) EnterGrantee_list(ctx *Grantee_listContext) {}
 
@@ -2386,21 +2406,23 @@ func (s *BasePostgreSQLParserListener) EnterCreatepublicationstmt(ctx *Createpub
 // ExitCreatepublicationstmt is called when production createpublicationstmt is exited.
 func (s *BasePostgreSQLParserListener) ExitCreatepublicationstmt(ctx *CreatepublicationstmtContext) {}
 
-// EnterOpt_publication_for_tables is called when production opt_publication_for_tables is entered.
-func (s *BasePostgreSQLParserListener) EnterOpt_publication_for_tables(ctx *Opt_publication_for_tablesContext) {
-}
+// EnterPub_obj_list is called when production pub_obj_list is entered.
+func (s *BasePostgreSQLParserListener) EnterPub_obj_list(ctx *Pub_obj_listContext) {}
 
-// ExitOpt_publication_for_tables is called when production opt_publication_for_tables is exited.
-func (s *BasePostgreSQLParserListener) ExitOpt_publication_for_tables(ctx *Opt_publication_for_tablesContext) {
-}
+// ExitPub_obj_list is called when production pub_obj_list is exited.
+func (s *BasePostgreSQLParserListener) ExitPub_obj_list(ctx *Pub_obj_listContext) {}
 
-// EnterPublication_for_tables is called when production publication_for_tables is entered.
-func (s *BasePostgreSQLParserListener) EnterPublication_for_tables(ctx *Publication_for_tablesContext) {
-}
+// EnterPublication_obj_spec is called when production publication_obj_spec is entered.
+func (s *BasePostgreSQLParserListener) EnterPublication_obj_spec(ctx *Publication_obj_specContext) {}
 
-// ExitPublication_for_tables is called when production publication_for_tables is exited.
-func (s *BasePostgreSQLParserListener) ExitPublication_for_tables(ctx *Publication_for_tablesContext) {
-}
+// ExitPublication_obj_spec is called when production publication_obj_spec is exited.
+func (s *BasePostgreSQLParserListener) ExitPublication_obj_spec(ctx *Publication_obj_specContext) {}
+
+// EnterOpt_where_clause is called when production opt_where_clause is entered.
+func (s *BasePostgreSQLParserListener) EnterOpt_where_clause(ctx *Opt_where_clauseContext) {}
+
+// ExitOpt_where_clause is called when production opt_where_clause is exited.
+func (s *BasePostgreSQLParserListener) ExitOpt_where_clause(ctx *Opt_where_clauseContext) {}
 
 // EnterAlterpublicationstmt is called when production alterpublicationstmt is entered.
 func (s *BasePostgreSQLParserListener) EnterAlterpublicationstmt(ctx *AlterpublicationstmtContext) {}

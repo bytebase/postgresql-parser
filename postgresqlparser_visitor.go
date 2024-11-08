@@ -1,4 +1,4 @@
-// Code generated from PostgreSQLParser.g4 by ANTLR 4.13.0. DO NOT EDIT.
+// Code generated from PostgreSQLParser.g4 by ANTLR 4.13.1. DO NOT EDIT.
 
 package parser // PostgreSQLParser
 import "github.com/antlr4-go/antlr/v4"
@@ -303,6 +303,9 @@ type PostgreSQLParserVisitor interface {
 
 	// Visit a parse tree produced by PostgreSQLParser#colconstraintelem.
 	VisitColconstraintelem(ctx *ColconstraintelemContext) interface{}
+
+	// Visit a parse tree produced by PostgreSQLParser#opt_unique_null_treatment.
+	VisitOpt_unique_null_treatment(ctx *Opt_unique_null_treatmentContext) interface{}
 
 	// Visit a parse tree produced by PostgreSQLParser#generated_when.
 	VisitGenerated_when(ctx *Generated_whenContext) interface{}
@@ -853,6 +856,12 @@ type PostgreSQLParserVisitor interface {
 	// Visit a parse tree produced by PostgreSQLParser#privilege_target.
 	VisitPrivilege_target(ctx *Privilege_targetContext) interface{}
 
+	// Visit a parse tree produced by PostgreSQLParser#parameter_name_list.
+	VisitParameter_name_list(ctx *Parameter_name_listContext) interface{}
+
+	// Visit a parse tree produced by PostgreSQLParser#parameter_name.
+	VisitParameter_name(ctx *Parameter_nameContext) interface{}
+
 	// Visit a parse tree produced by PostgreSQLParser#grantee_list.
 	VisitGrantee_list(ctx *Grantee_listContext) interface{}
 
@@ -1129,11 +1138,14 @@ type PostgreSQLParserVisitor interface {
 	// Visit a parse tree produced by PostgreSQLParser#createpublicationstmt.
 	VisitCreatepublicationstmt(ctx *CreatepublicationstmtContext) interface{}
 
-	// Visit a parse tree produced by PostgreSQLParser#opt_publication_for_tables.
-	VisitOpt_publication_for_tables(ctx *Opt_publication_for_tablesContext) interface{}
+	// Visit a parse tree produced by PostgreSQLParser#pub_obj_list.
+	VisitPub_obj_list(ctx *Pub_obj_listContext) interface{}
 
-	// Visit a parse tree produced by PostgreSQLParser#publication_for_tables.
-	VisitPublication_for_tables(ctx *Publication_for_tablesContext) interface{}
+	// Visit a parse tree produced by PostgreSQLParser#publication_obj_spec.
+	VisitPublication_obj_spec(ctx *Publication_obj_specContext) interface{}
+
+	// Visit a parse tree produced by PostgreSQLParser#opt_where_clause.
+	VisitOpt_where_clause(ctx *Opt_where_clauseContext) interface{}
 
 	// Visit a parse tree produced by PostgreSQLParser#alterpublicationstmt.
 	VisitAlterpublicationstmt(ctx *AlterpublicationstmtContext) interface{}

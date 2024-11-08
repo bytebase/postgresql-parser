@@ -1,4 +1,4 @@
-// Code generated from PostgreSQLParser.g4 by ANTLR 4.13.0. DO NOT EDIT.
+// Code generated from PostgreSQLParser.g4 by ANTLR 4.13.1. DO NOT EDIT.
 
 package parser // PostgreSQLParser
 import "github.com/antlr4-go/antlr/v4"
@@ -400,6 +400,10 @@ func (v *BasePostgreSQLParserVisitor) VisitColconstraint(ctx *ColconstraintConte
 }
 
 func (v *BasePostgreSQLParserVisitor) VisitColconstraintelem(ctx *ColconstraintelemContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BasePostgreSQLParserVisitor) VisitOpt_unique_null_treatment(ctx *Opt_unique_null_treatmentContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -1135,6 +1139,14 @@ func (v *BasePostgreSQLParserVisitor) VisitPrivilege_target(ctx *Privilege_targe
 	return v.VisitChildren(ctx)
 }
 
+func (v *BasePostgreSQLParserVisitor) VisitParameter_name_list(ctx *Parameter_name_listContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BasePostgreSQLParserVisitor) VisitParameter_name(ctx *Parameter_nameContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BasePostgreSQLParserVisitor) VisitGrantee_list(ctx *Grantee_listContext) interface{} {
 	return v.VisitChildren(ctx)
 }
@@ -1503,11 +1515,15 @@ func (v *BasePostgreSQLParserVisitor) VisitCreatepublicationstmt(ctx *Createpubl
 	return v.VisitChildren(ctx)
 }
 
-func (v *BasePostgreSQLParserVisitor) VisitOpt_publication_for_tables(ctx *Opt_publication_for_tablesContext) interface{} {
+func (v *BasePostgreSQLParserVisitor) VisitPub_obj_list(ctx *Pub_obj_listContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BasePostgreSQLParserVisitor) VisitPublication_for_tables(ctx *Publication_for_tablesContext) interface{} {
+func (v *BasePostgreSQLParserVisitor) VisitPublication_obj_spec(ctx *Publication_obj_specContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BasePostgreSQLParserVisitor) VisitOpt_where_clause(ctx *Opt_where_clauseContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
