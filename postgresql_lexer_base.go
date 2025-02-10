@@ -1,6 +1,7 @@
 package parser
 
 import (
+	"strings"
 	"unicode"
 
 	"github.com/antlr4-go/antlr/v4"
@@ -9,7 +10,8 @@ import (
 type PostgreSQLLexerBase struct {
 	*antlr.BaseLexer
 
-	stack StringStack
+	stack              StringStack
+	reservedKeywordMap map[string]bool
 }
 
 func (receiver *PostgreSQLLexerBase) pushTag() {
@@ -423,5 +425,29 @@ func (receiver *PostgreSQLLexerBase) IsIdentifier(tokenType int) bool {
 		return true
 	}
 
+	symbol := receiver.GetSymbolicNames()[tokenType]
+	symbol = strings.TrimSuffix(symbol, "_SYMBOL")
+	if len(symbol) > 0 && !receiver.IsReservedKeyword(symbol) {
+		return true
+	}
 	return false
+}
+
+func (receiver *PostgreSQLLexerBase) IsReservedKeyword(s string) bool {
+	receiver.initReservedKeywordMap()
+
+	_, exists := receiver.reservedKeywordMap[s]
+	return exists
+}
+
+func (receiver *PostgreSQLLexerBase) initReservedKeywordMap() {
+	if receiver.reservedKeywordMap != nil {
+		return
+	}
+
+	receiver.reservedKeywordMap = make(map[string]bool)
+
+	for _, keyword := range Keywords {
+		receiver.reservedKeywordMap[keyword.Keyword] = true
+	}
 }
