@@ -448,6 +448,8 @@ func (receiver *PostgreSQLLexerBase) initReservedKeywordMap() {
 	receiver.reservedKeywordMap = make(map[string]bool)
 
 	for _, keyword := range Keywords {
-		receiver.reservedKeywordMap[keyword.Keyword] = true
+		if keyword.Reserved {
+			receiver.reservedKeywordMap[keyword.Keyword] = true
+		}
 	}
 }
